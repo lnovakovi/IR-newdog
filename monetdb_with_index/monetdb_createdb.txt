@@ -1,0 +1,15 @@
+CREATE TABLE dict (termid int NOT NULL, term varchar(100), df int, PRIMARY KEY (termid));
+
+CREATE TABLE terms (termid int,docid int, count int);
+
+CREATE TABLE docs (name varchar(50), docid int NOT NULL, length int, PRIMARY KEY (docid));
+
+COPY INTO dict FROM '/home/gizem/olddog/createDB/dict.csv' DELIMITERS '|';
+COPY INTO docs FROM '/home/gizem/olddog/createDB/docs_modified.csv' DELIMITERS '|';
+COPY INTO terms FROM '/home/gizem/olddog/createDB/terms.csv' DELIMITERS '|';
+
+
+CREATE INDEX dict_index ON dict (termid);
+CREATE INDEX docs_index ON docs (docid);
+CREATE INDEX terms_index ON terms (termid);
+
